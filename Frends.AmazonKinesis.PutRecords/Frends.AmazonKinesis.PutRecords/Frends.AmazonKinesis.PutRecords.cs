@@ -33,7 +33,7 @@ public static class AmazonKinesis
     internal static Func<Connection, IAmazonKinesis> KinesisClientFactory { get; set; } = DefaultKinesisClientFactory;
 
     /// <summary>
-    /// Frends Task for sending data records to an Amazon Kinesis Data Stream
+    /// Frends Task for sending data records to an Amazon Kinesis Data Stream.
     /// [Documentation](https://tasks.frends.com/tasks/frends-tasks/Frends-AmazonKinesis-PutRecords)
     /// </summary>
     /// <param name="input">Essential parameters.</param>
