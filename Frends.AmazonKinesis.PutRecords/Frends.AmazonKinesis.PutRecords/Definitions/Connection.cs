@@ -25,9 +25,9 @@ public class Connection
     public string AwsSecretAccessKey { get; set; }
 
     /// <summary>
-    /// AWS S3 bucket's region.
+    /// AWS Kinesis stream region.
     /// </summary>
     /// <example>eu-west-1</example>
     [DefaultValue(Region.EuWest1)]
-    public Region Region { get; set; }
+    public Region Region { get; set; } = Region.EuWest1;
 }

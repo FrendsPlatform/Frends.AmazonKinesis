@@ -61,9 +61,6 @@ public class UnitTests
                 (true, null, null),
                 (false, "ProvisionedThroughputExceededException", "Rate exceeded")));
 
-        Assert.ThrowsAsync<Exception>(() =>
-            AmazonKinesis.PutRecords(DefaultInput(), new Connection(), DefaultOptions(), default));
-
         var ex = Assert.ThrowsAsync<Exception>(() =>
         AmazonKinesis.PutRecords(DefaultInput(), new Connection(), DefaultOptions(), default));
 

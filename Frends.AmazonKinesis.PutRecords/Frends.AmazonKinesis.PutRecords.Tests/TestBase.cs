@@ -10,7 +10,7 @@ public abstract class TestBase
     {
         DotEnv.Load();
         AccessKey = Environment.GetEnvironmentVariable("AMAZON_KINESIS_ACCESS_KEY");
-        SecretAccessKey = Environment.GetEnvironmentVariable("AMAZON_KINESIS_SECRET_ACCES_KEY");
+        SecretAccessKey = Environment.GetEnvironmentVariable("AMAZON_KINESIS_SECRET_ACCESS_KEY");
     }
 
     protected string AccessKey { get; private set; }

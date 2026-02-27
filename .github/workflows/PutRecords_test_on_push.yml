@@ -23,4 +23,4 @@ jobs:
       badge_service_api_key: ${{ secrets.BADGE_SERVICE_API_KEY }}
       test_feed_api_key: ${{ secrets.TASKS_TEST_FEED_API_KEY }}
       env_var_value_1: ${{ secrets.AMAZON_KINESIS_ACCESS_KEY }}
-      env_var_value_3: ${{ secrets.AMAZON_KINESIS_SECRET_ACCES_KEY }}
+      env_var_value_2: ${{ secrets.AMAZON_KINESIS_SECRET_ACCES_KEY }}
