@@ -13,9 +13,9 @@ public abstract class TestBase
         SecretAccessKey = Environment.GetEnvironmentVariable("AMAZON_KINESIS_SECRET_ACCESS_KEY");
     }
 
-    protected string AccessKey { get; private set; }
+    private string AccessKey { get; set; }
 
-    protected string SecretAccessKey { get; private set; }
+    private string SecretAccessKey { get; set; }
 
     protected static Options DefaultOptions() => new()
     {

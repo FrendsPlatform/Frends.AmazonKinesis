@@ -67,4 +67,19 @@ public class FunctionalTests : TestBase
         Assert.ThrowsAsync<Exception>(() =>
             AmazonKinesis.PutRecords(input, connection, DefaultOptions(), CancellationToken.None));
     }
+
+    [Test]
+    public void PutRecords_EmptyRecordsList_ThrowsException()
+    {
+        var input = new Input
+        {
+            StreamName = "fsp",
+            Records = new List<LogEntry>(),
+        };
+
+        var ex = Assert.ThrowsAsync<Exception>(() =>
+            AmazonKinesis.PutRecords(input, DefaultConnection(), DefaultOptions(), CancellationToken.None));
+
+        Assert.That(ex.Message, Does.Contain("Records list cannot be empty"));
+    }
 }

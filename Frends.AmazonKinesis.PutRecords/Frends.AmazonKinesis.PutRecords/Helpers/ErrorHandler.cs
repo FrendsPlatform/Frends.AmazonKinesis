@@ -6,7 +6,7 @@ namespace Frends.AmazonKinesis.PutRecords.Helpers;
 
 internal static class ErrorHandler
 {
-    internal static Result Handle(Exception exception, bool throwOnFailure, string errorMessageOnFailure, int? failedRecordCount = null, List<RecordResult> recordResults = null)
+    internal static Result Handle(Exception exception, bool throwOnFailure, string errorMessageOnFailure, int failedRecordCount, List<RecordResult> recordResults)
     {
         if (throwOnFailure)
         {
@@ -22,7 +22,7 @@ internal static class ErrorHandler
 
         return new Result(
             success: false,
-            entries: recordResults,
+            entries: recordResults ?? [],
             failedCount: failedRecordCount,
             error: new Error { Message = errorMessage, AdditionalInfo = exception });
     }

@@ -5,7 +5,7 @@
 /// </summary>
 public enum Region
 {
-#pragma warning disable SA1602 // Enumeration items should be documented
+#pragma warning disable SA1602 // Enum is self-explanatory
     AfSouth1,
     ApEast1,
     ApNortheast1,
@@ -29,5 +29,5 @@ public enum Region
     UsEast2,
     UsWest1,
     UsWest2,
-#pragma warning restore SA1602 // Enumeration items should be documented
+#pragma warning restore SA1602 // Enum is self-explanatory
 }

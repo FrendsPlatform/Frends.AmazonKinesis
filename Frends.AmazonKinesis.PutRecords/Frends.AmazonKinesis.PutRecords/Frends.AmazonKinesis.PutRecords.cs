@@ -49,8 +49,14 @@ public static class AmazonKinesis
     {
         var recordResults = new List<RecordResult>();
         var streams = new List<MemoryStream>();
+        int failedCount = 0;
         try
         {
+            if (input.Records == null || input.Records.Count == 0)
+            {
+                throw new ArgumentException("The Records list cannot be empty. You must provide at least one record to send.");
+            }
+
             using var client = KinesisClientFactory(connection);
 
             var entries = new List<PutRecordsRequestEntry>();
@@ -85,7 +91,7 @@ public static class AmazonKinesis
                 });
             }
 
-            int failedCount = response.FailedRecordCount ?? 0;
+            failedCount = response.FailedRecordCount ?? 0;
             if (failedCount > 0)
             {
                 var sb = new StringBuilder();
@@ -95,18 +101,18 @@ public static class AmazonKinesis
                     .Select(r => $"{r.ErrorCode}: {r.ErrorMessage}")
                     .Distinct();
                 sb.Append("Details: " + string.Join(" | ", distinctErrors));
-                return ErrorHandler.Handle(new Exception(sb.ToString()), options.ThrowErrorOnFailure, options.ErrorMessageOnFailure, failedCount, recordResults);
+                throw new Exception(sb.ToString());
             }
 
-            return new Result(true, recordResults, failedCount, null);
+            return new Result(true, recordResults, 0, null);
         }
         catch (Exception e)
         {
-            return ErrorHandler.Handle(e, options.ThrowErrorOnFailure, options.ErrorMessageOnFailure);
+            return ErrorHandler.Handle(e, options.ThrowErrorOnFailure, options.ErrorMessageOnFailure, failedCount, recordResults);
         }
         finally
         {
-            foreach (var ms in streams) ms.Dispose();
+            foreach (var ms in streams) await ms.DisposeAsync().ConfigureAwait(false);
         }
     }
 
@@ -138,7 +144,7 @@ public static class AmazonKinesis
             Region.UsEast2 => RegionEndpoint.USEast2,
             Region.UsWest1 => RegionEndpoint.USWest1,
             Region.UsWest2 => RegionEndpoint.USWest2,
-            _ => RegionEndpoint.EUWest1,
+            _ => throw new ArgumentOutOfRangeException(nameof(region), region, "Unsupported AWS region."),
         };
     }
 }
