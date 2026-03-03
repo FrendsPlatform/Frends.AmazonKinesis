@@ -34,3 +34,4 @@ public abstract class TestBase
         Region = Region.EuCentral1,
     };
 }
+
