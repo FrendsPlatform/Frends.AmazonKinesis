@@ -1,11 +1,10 @@
-[//]: # (Update this file with actual SystemName and ActionName)
-# Frends.{SystemName}
+# Frends.AmazonKinesis
 
-Frends tasks for {SystemName} related operations.
+Frends tasks for AmazonKinesis related operations.
 
 # Tasks
 
-- [Frends.{SystemName}.{ActionName}](Frends.{SystemName}.{ActionName}/README.md)
+- [Frends.AmazonKinesis.PutRecords](Frends.AmazonKinesis.PutRecords/README.md)
 
 # Contributing
 
