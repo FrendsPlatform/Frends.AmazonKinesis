@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Updated PutRecords project metadata to include compliance-required copyright value.
+- Updated task metadata to comply with Frends best practices.
 
 ## [1.0.0] - 2026-02-25
 
