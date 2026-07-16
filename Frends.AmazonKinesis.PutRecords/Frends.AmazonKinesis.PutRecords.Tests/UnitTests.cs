@@ -61,8 +61,8 @@ public class UnitTests
                 (true, null, null),
                 (false, "ProvisionedThroughputExceededException", "Rate exceeded")));
 
-        var ex = Assert.ThrowsAsync<Exception>(new AsyncTestDelegate(() =>
-        AmazonKinesis.PutRecords(DefaultInput(), new Connection(), DefaultOptions(), default)));
+        Func<Task> act = () => AmazonKinesis.PutRecords(DefaultInput(), new Connection(), DefaultOptions(), default);
+        var ex = Assert.ThrowsAsync<Exception>(act);
 
         Assert.That(ex.Message, Contains.Substring("Failed to deliver 1 records out of 2"));
         Assert.That(ex.Message, Contains.Substring("ProvisionedThroughputExceededException"));
