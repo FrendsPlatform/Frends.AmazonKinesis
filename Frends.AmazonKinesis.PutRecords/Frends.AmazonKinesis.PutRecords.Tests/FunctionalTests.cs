@@ -64,8 +64,8 @@ public class FunctionalTests : TestBase
             new() { Data = "test", PartitionKey = "partition-1" },
         };
 
-        Assert.ThrowsAsync<Exception>(() =>
-            AmazonKinesis.PutRecords(input, connection, DefaultOptions(), CancellationToken.None));
+        Assert.ThrowsAsync<Exception>(new AsyncTestDelegate(() =>
+            AmazonKinesis.PutRecords(input, connection, DefaultOptions(), CancellationToken.None)));
     }
 
     [Test]
@@ -77,8 +77,8 @@ public class FunctionalTests : TestBase
             Records = new List<LogEntry>(),
         };
 
-        var ex = Assert.ThrowsAsync<Exception>(() =>
-            AmazonKinesis.PutRecords(input, DefaultConnection(), DefaultOptions(), CancellationToken.None));
+        var ex = Assert.ThrowsAsync<Exception>(new AsyncTestDelegate(() =>
+            AmazonKinesis.PutRecords(input, DefaultConnection(), DefaultOptions(), CancellationToken.None)));
 
         Assert.That(ex.Message, Does.Contain("Records list cannot be empty"));
     }
